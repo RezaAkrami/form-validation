@@ -1,6 +1,21 @@
-import React from 'react';
+import React , {useState} from 'react';
 
 const SignUp = () => {
+
+    // state
+    const [data, setData] = useState({
+
+        name : "" ,
+        email : "" ,
+        password : "" ,
+        confirmPassword : "" ,
+        isAccepted : false ,
+
+    });
+
+    //destructuring data
+    const {name,email,password,confirmPassword,isAccepted} = data;
+
     return (
         <div>
             <form>
