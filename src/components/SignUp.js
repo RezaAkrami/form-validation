@@ -3,6 +3,7 @@ import { validate } from './validate';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import notify from './notify';
+import styles from './SignUp.module.css'
 
 const SignUp = () => {
 
@@ -43,7 +44,7 @@ const SignUp = () => {
         e.preventDefault();
         if(!Object.keys(errors).length){
             console.log(data);
-            notify("success")
+            notify('you sgin up successfully',"success")
         }else{
             setFocus({
                 name : true ,
@@ -52,7 +53,7 @@ const SignUp = () => {
                 confirmPassword : true ,
                 isAccepted : true ,
             });
-            notify("error")
+            notify('invalid data',"error")
         }
     }
 
@@ -60,40 +61,98 @@ const SignUp = () => {
     const {name,email,password,confirmPassword,isAccepted} = data;
 
     return (
-        <div>
-            <form onSubmit={submitHandler}>
-                <div>
+        <div className={styles.container}>
+            <form onSubmit={submitHandler} className={styles.formContainer}>
+
+                <h2 className={styles.header}>SignUp</h2>
+
+                <div className={styles.formField}>
+
                     <label>Name</label>
-                    <input type="text" name="name" value={name} onChange={changeHandler} onFocus={focusHandler}/>
+
+                    <input 
+                        className={errors.name && focus.name ? styles.uncompleted : styles.formInput} 
+                        type="text" 
+                        name="name" 
+                        value={name} 
+                        onChange={changeHandler} 
+                        onFocus={focusHandler}
+                    />
+
                     {errors.name && focus.name && <span>{errors.name}</span>}
+
                 </div>
                 
-                <div>
+                <div className={styles.formField}>
+
                     <label>Email</label>
-                    <input type="text" name="email" value={email} onChange={changeHandler} onFocus={focusHandler}/>
+
+                    <input 
+                        className={errors.name && focus.name ? styles.uncompleted : styles.formInput}
+                        type="text" 
+                        name="email" 
+                        value={email} 
+                        onChange={changeHandler} 
+                        onFocus={focusHandler}
+                    />
+
                     {errors.email && focus.email && <span>{errors.email}</span>}
+
                 </div>
 
-                <div>
+                <div className={styles.formField}>
+
                     <label>Password</label>
-                    <input type="password" name="password" value={password} onChange={changeHandler} onFocus={focusHandler}/>
+
+                    <input 
+                        className={errors.name && focus.name ? styles.uncompleted : styles.formInput}
+                        type="password" 
+                        name="password" 
+                        value={password} 
+                        onChange={changeHandler} 
+                        onFocus={focusHandler}
+                    />
+
                     {errors.password && focus.password && <span>{errors.password}</span>}
+
                 </div>
 
-                <div>
+                <div className={styles.formField}>
+
                     <label>Confirm Password</label>
-                    <input type="password" name="confirmPassword" value={confirmPassword} onChange={changeHandler} onFocus={focusHandler}/>
+
+                    <input 
+                        className={errors.name && focus.name ? styles.uncompleted : styles.formInput}
+                        type="password" 
+                        name="confirmPassword" 
+                        value={confirmPassword} 
+                        onChange={changeHandler} 
+                        onFocus={focusHandler}
+                    />
+
                     {errors.confirmPassword && focus.confirmPassword && <span>{errors.confirmPassword}</span>}
+
                 </div>
 
-                <div>
-                    <label>Accept our policies</label>
-                    <input type="checkbox" name="isAccepted" value={isAccepted} onChange={changeHandler} onFocus={focusHandler}/>
+                <div className={styles.formField}>
+                    <div className={styles.checkBoxContainer} >
+                        <label>Accept our policies</label>
+
+                        <input 
+                            type="checkbox" 
+                            name="isAccepted" 
+                            value={isAccepted} 
+                            onChange={changeHandler} 
+                            onFocus={focusHandler}
+                        />
+                    </div>
+
                     {errors.isAccepted && focus.isAccepted && <span>{errors.isAccepted}</span>}
+
                 </div>
 
-                <div>
-                    <button type='submit'>Log in</button>
+                <div className={styles.formButtons}>
+                    <a href='#'>Log in</a>
                     <button type='submit'>Sign Up</button>
                 </div>
             </form>

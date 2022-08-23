@@ -1,11 +1,11 @@
 import { toast } from 'react-toastify';
 
-const notify = (type) =>{
+const notify = (text,type) =>{
 
     if( type === "success"){
-        toast.success('you sgin in successfully');
+        toast.success(text);
     }else{
-        toast.error('invalid data');
+        toast.error(text);
     }
 } 
     
